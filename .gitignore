@@ -1,0 +1,62 @@
+# === Dependencies ===
+node_modules/
+.pnp/
+.pnp.js
+
+# === Expo ===
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.expo-shared/
+
+# === Native (généré par prebuild / EAS) ===
+ios/
+android/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.kotlin/
+
+# === Metro ===
+.metro-health-check*
+
+# === Build / TypeScript ===
+*.tsbuildinfo
+.tsbuildinfo
+
+# === Tests / coverage ===
+coverage/
+
+# === Logs ===
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+logs/
+
+# === Variables d'environnement (secrets) ===
+.env
+.env.local
+.env.*.local
+*.pem
+# garder l'exemple versionné
+!.env.example
+
+# === macOS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# === Éditeurs / IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# === Outils IA (skills locaux, non livrables) ===
+.claude/
+.gemini/
