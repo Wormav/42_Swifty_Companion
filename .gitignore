@@ -60,3 +60,5 @@ logs/
 # === Outils IA (skills locaux, non livrables) ===
 .claude/
 .gemini/
+.agents/
+.agent/
