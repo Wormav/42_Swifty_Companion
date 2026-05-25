@@ -1,0 +1,10 @@
+node_modules
+.expo
+.vscode
+dist
+ios
+android
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+coverage
