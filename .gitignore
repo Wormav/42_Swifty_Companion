@@ -57,6 +57,9 @@ logs/
 *.swp
 *.swo
 
+# === Build ===
+ios/*
+
 # === Outils IA (skills locaux, non livrables) ===
 .claude/
 .gemini/
