@@ -1,22 +1,37 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { StatusBar, StyleSheet } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { RootStackParamList } from "./navigation/types";
+import ProfileScreen from "./screens/ProfileScreen";
+import SearchScreen from "./screens/SearchScreen";
 
-export default function App(): React.JSX.Element {
-	return (
-		<View style={styles.container}>
-			<Text>Open up App.js to start working on your app!</Text>
-			<StatusBar style="auto" />
-		</View>
-	);
-}
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const App: React.FC = () => (
+	<SafeAreaProvider>
+		<SafeAreaView style={styles.flex}>
+			<StatusBar barStyle="dark-content" />
+			<NavigationContainer>
+				<Stack.Navigator
+					initialRouteName="Search"
+					screenOptions={{
+						headerShown: false,
+					}}
+				>
+					<Stack.Screen name="Search" component={SearchScreen} />
+					<Stack.Screen name="Profile" component={ProfileScreen} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</SafeAreaView>
+	</SafeAreaProvider>
+);
 
 const styles = StyleSheet.create({
-	container: {
+	flex: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
 	},
 });
+
+export default App;
