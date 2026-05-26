@@ -8,11 +8,13 @@ type ProfileScreenRouteProp = RouteProp<RootStackParamList, "Profile">;
 
 const ProfileScreen: React.FC = () => {
 	const route = useRoute<ProfileScreenRouteProp>();
-	const { login } = route.params;
+	const { userData } = route.params;
 
 	return (
 		<Layout>
-			<Text style={styles.title}>Profil de {login}</Text>
+			<Text style={styles.title}>Profil de {userData.login}</Text>
+			<Text>Email: {userData.email}</Text>
+			<Text>Level: {userData.cursus_users?.[0]?.level}</Text>
 		</Layout>
 	);
 };
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 22,
 		fontWeight: "bold",
+		marginBottom: 10,
 	},
 });
 

@@ -24,10 +24,11 @@ export const NativeTextField: React.FC<Props> = ({ placeholder, value, onChangeT
 	}, [value, textState]);
 
 	return (
-		<Host matchContents style={styles.input}>
+		<Host style={styles.input}>
 			<TextInput
 				placeholder={placeholder}
 				value={textState}
+				style={styles.input}
 				onChangeText={(text) => {
 					updateNativeState(textState, text);
 					onChangeText(text);
@@ -41,5 +42,6 @@ export const NativeTextField: React.FC<Props> = ({ placeholder, value, onChangeT
 const styles = StyleSheet.create({
 	input: {
 		width: "100%",
+		height: 44,
 	},
 });
