@@ -1,9 +1,8 @@
-import { Host } from "@expo/ui";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { StatusBar, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "./navigation/types";
 import ProfileScreen from "./screens/ProfileScreen";
 import SearchScreen from "./screens/SearchScreen";
@@ -11,7 +10,7 @@ import SearchScreen from "./screens/SearchScreen";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App: React.FC = () => (
-	<Host style={styles.flex}>
+	<SafeAreaProvider>
 		<SafeAreaView style={styles.flex}>
 			<StatusBar barStyle="dark-content" />
 			<NavigationContainer>
@@ -26,7 +25,7 @@ const App: React.FC = () => (
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaView>
-	</Host>
+	</SafeAreaProvider>
 );
 
 const styles = StyleSheet.create({

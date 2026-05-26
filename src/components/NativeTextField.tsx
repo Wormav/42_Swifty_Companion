@@ -1,8 +1,5 @@
-import { Host, ObservableState, TextInput, useNativeState } from "@expo/ui";
-import { fillMaxWidth } from "@expo/ui/jetpack-compose/modifiers";
-import { textFieldStyle } from "@expo/ui/swift-ui/modifiers";
-import React, { useEffect } from "react";
-import { Platform, StyleSheet } from "react-native";
+import React from "react";
+import { Platform, StyleSheet, TextInput } from "react-native";
 
 type Props = {
 	placeholder?: string;
@@ -10,38 +7,27 @@ type Props = {
 	onChangeText: (text: string) => void;
 };
 
-const updateNativeState = (state: ObservableState<string>, newValue: string): void => {
-	state.value = newValue;
-};
-
-export const NativeTextField: React.FC<Props> = ({ placeholder, value, onChangeText }) => {
-	const textState = useNativeState(value);
-
-	useEffect(() => {
-		if (textState.value !== value) {
-			updateNativeState(textState, value);
-		}
-	}, [value, textState]);
-
-	return (
-		<Host style={styles.input}>
-			<TextInput
-				placeholder={placeholder}
-				value={textState}
-				style={styles.input}
-				onChangeText={(text) => {
-					updateNativeState(textState, text);
-					onChangeText(text);
-				}}
-				modifiers={Platform.OS === "ios" ? [textFieldStyle("roundedBorder")] : [fillMaxWidth()]}
-			/>
-		</Host>
-	);
-};
+export const NativeTextField: React.FC<Props> = ({ placeholder, value, onChangeText }) => (
+	<TextInput
+		placeholder={placeholder}
+		value={value}
+		onChangeText={onChangeText}
+		style={styles.input}
+		placeholderTextColor="#999"
+		autoCapitalize="none"
+		autoCorrect={false}
+	/>
+);
 
 const styles = StyleSheet.create({
 	input: {
 		width: "100%",
 		height: 44,
+		backgroundColor: "#f5f5f5",
+		borderRadius: 10,
+		paddingHorizontal: 15,
+		fontSize: 16,
+		borderWidth: Platform.OS === "android" ? 0 : 1,
+		borderColor: "#e0e0e0",
 	},
 });
