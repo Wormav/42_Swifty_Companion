@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Image, Keyboard, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import apiClient from "../api/api-client";
 import { Layout } from "../components/Layout";
+import { Logo42 } from "../components/Logo42";
 import { NativeTextField } from "../components/NativeTextField";
 import { HomeScreenNavigationProp } from "../navigation/types";
 import { Event42 } from "../types/event";
@@ -177,6 +178,7 @@ const HomeScreen: React.FC = () => {
 	return (
 		<Layout style={{ paddingHorizontal: 10 }}>
 			<View style={styles.headerContainer}>
+				<Logo42 width={60} height={60} />
 				<Text style={styles.title}>Swifty Companion</Text>
 			</View>
 
