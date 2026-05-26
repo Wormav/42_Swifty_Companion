@@ -1,27 +1,37 @@
-import { StatusBar, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+import { Host } from "@expo/ui";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { RootStackParamList } from "./navigation/types";
+import ProfileScreen from "./screens/ProfileScreen";
 import SearchScreen from "./screens/SearchScreen";
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 const App: React.FC = () => (
-	<SafeAreaView style={styles.safe}>
-		<StatusBar barStyle="dark-content" />
-		<View style={styles.container}>
-			<SearchScreen />
-		</View>
-	</SafeAreaView>
+	<Host style={styles.flex}>
+		<SafeAreaView style={styles.flex}>
+			<StatusBar barStyle="dark-content" />
+			<NavigationContainer>
+				<Stack.Navigator
+					initialRouteName="Search"
+					screenOptions={{
+						headerShown: false,
+					}}
+				>
+					<Stack.Screen name="Search" component={SearchScreen} />
+					<Stack.Screen name="Profile" component={ProfileScreen} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</SafeAreaView>
+	</Host>
 );
 
 const styles = StyleSheet.create({
-	safe: {
+	flex: {
 		flex: 1,
-	},
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		gap: 16,
 	},
 });
 
