@@ -14,14 +14,17 @@ const App: React.FC = () => (
 		<SafeAreaView style={styles.flex}>
 			<StatusBar barStyle="dark-content" />
 			<NavigationContainer>
-				<Stack.Navigator
-					initialRouteName="Search"
-					screenOptions={{
-						headerShown: false,
-					}}
-				>
-					<Stack.Screen name="Search" component={SearchScreen} />
-					<Stack.Screen name="Profile" component={ProfileScreen} />
+				<Stack.Navigator initialRouteName="Search">
+					<Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
+					<Stack.Screen
+						name="Profile"
+						component={ProfileScreen}
+						options={({ route }) => ({
+							headerShown: true,
+							title: route.params.userData.login,
+							headerBackTitle: "Recherche",
+						})}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaView>

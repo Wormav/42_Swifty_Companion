@@ -17,6 +17,7 @@ export type User42 = {
 	cursus_users: {
 		level: number;
 		cursus: {
+			id: number;
 			name: string;
 		};
 		skills: {
@@ -29,6 +30,7 @@ export type User42 = {
 		id: number;
 		status: string;
 		final_mark: number | null;
+		cursus_ids: number[];
 		project: {
 			name: string;
 		};
