@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Image, Keyboard, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import apiClient from "../api/api-client";
+import { EventModal } from "../components/EventModal";
 import { Layout } from "../components/Layout";
 import { Logo42 } from "../components/Logo42";
 import { NativeTextField } from "../components/NativeTextField";
@@ -19,6 +20,7 @@ const HomeScreen: React.FC = () => {
 
 	const [events, setEvents] = useState<Event42[]>([]);
 	const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(true);
+	const [selectedEvent, setSelectedEvent] = useState<Event42 | null>(null);
 
 	useEffect(() => {
 		const fetchInitialData = async (): Promise<void> => {
@@ -126,7 +128,7 @@ const HomeScreen: React.FC = () => {
 		}
 
 		return (
-			<View key={evt.id} style={[styles.eventCard, { borderColor: mainColor }]}>
+			<TouchableOpacity key={evt.id} style={[styles.eventCard, { borderColor: mainColor }]} onPress={() => setSelectedEvent(evt)}>
 				<View style={[styles.eventDateBlock, { backgroundColor: mainColor }]}>
 					<Text style={styles.eventDayName}>{dayName}</Text>
 					<Text style={styles.eventDateNum}>{dateNum}</Text>
@@ -171,7 +173,7 @@ const HomeScreen: React.FC = () => {
 						)}
 					</View>
 				</View>
-			</View>
+			</TouchableOpacity>
 		);
 	};
 
@@ -223,6 +225,8 @@ const HomeScreen: React.FC = () => {
 			)}
 
 			{isLoadingProfile && <ActivityIndicator size="large" color="#0000ff" style={{ marginTop: 20 }} />}
+			
+			<EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
 		</Layout>
 	);
 };
