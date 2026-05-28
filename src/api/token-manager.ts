@@ -46,6 +46,11 @@ class TokenManager {
 
 		return this.accessToken as string;
 	}
+
+	public invalidateToken(): void {
+		this.accessToken = null;
+		this.tokenExpiresAt = 0;
+	}
 }
 
 export default TokenManager.getInstance();

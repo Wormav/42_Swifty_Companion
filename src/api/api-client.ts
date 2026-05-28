@@ -10,7 +10,7 @@ type ApiOptions = {
 };
 
 class ApiClient {
-	public async fetch42<T>(endpoint: string, options: ApiOptions = {}): Promise<T> {
+	public async fetch42<T>(endpoint: string, options: ApiOptions = {}, isRetry: boolean = false): Promise<T> {
 		const token = await tokenManager.getToken();
 
 		const headers = {
@@ -23,6 +23,11 @@ class ApiClient {
 			...options,
 			headers,
 		});
+
+		if (response.status === 401 && !isRetry) {
+			tokenManager.invalidateToken();
+			return this.fetch42<T>(endpoint, options, true);
+		}
 
 		if (!response.ok) {
 			await this.handleHttpError(response);
