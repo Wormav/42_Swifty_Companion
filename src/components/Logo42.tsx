@@ -11,5 +11,5 @@ const xml = `
 `;
 
 export const Logo42 = ({ width = 100, height = 100 }: { width?: number; height?: number }): React.ReactElement => (
-  <SvgXml xml={xml} width={width} height={height} />
+	<SvgXml xml={xml} width={width} height={height} />
 );

@@ -128,7 +128,11 @@ const HomeScreen: React.FC = () => {
 		}
 
 		return (
-			<TouchableOpacity key={evt.id} style={[styles.eventCard, { borderColor: mainColor }]} onPress={() => setSelectedEvent(evt)}>
+			<TouchableOpacity
+				key={evt.id}
+				style={[styles.eventCard, { borderColor: mainColor }]}
+				onPress={() => setSelectedEvent(evt)}
+			>
 				<View style={[styles.eventDateBlock, { backgroundColor: mainColor }]}>
 					<Text style={styles.eventDayName}>{dayName}</Text>
 					<Text style={styles.eventDateNum}>{dateNum}</Text>
@@ -225,7 +229,7 @@ const HomeScreen: React.FC = () => {
 			)}
 
 			{isLoadingProfile && <ActivityIndicator size="large" color="#0000ff" style={{ marginTop: 20 }} />}
-			
+
 			<EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
 		</Layout>
 	);
