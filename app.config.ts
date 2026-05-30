@@ -11,6 +11,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	ios: {
 		supportsTablet: true,
 		bundleIdentifier: "com.wormav.swiftycompanion",
+		infoPlist: {
+			ITSAppUsesNonExemptEncryption: false,
+		},
 	},
 	android: {
 		adaptiveIcon: {
@@ -27,5 +30,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	extra: {
 		api42Uid: process.env.EXPO_PUBLIC_API_42_UID,
 		api42Secret: process.env.EXPO_PUBLIC_API_42_SECRET,
+		eas: {
+			projectId: "a9a8bae5-91cd-428a-a7b7-4e0f2a640383",
+		},
 	},
 });
