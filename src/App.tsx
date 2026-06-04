@@ -14,7 +14,7 @@ const App: React.FC = () => (
 		<SafeAreaView style={styles.flex}>
 			<StatusBar barStyle="dark-content" />
 			<NavigationContainer>
-				<Stack.Navigator initialRouteName="Home">
+				<Stack.Navigator id="RootStack" initialRouteName="Home">
 					<Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
 					<Stack.Screen
 						name="Profile"
