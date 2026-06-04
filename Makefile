@@ -1,5 +1,5 @@
 .PHONY: all start ios android lint format clean fclean re ascii help
-
+.DEFAULT_GOAL := all
 ascii:
 	@clear
 	@printf "\033[36m"
@@ -8,8 +8,10 @@ ascii:
 	@echo "\033[1;34m================================================================================\033[0m"
 	@echo ""
 
-all: ascii start
-
+all: ascii
+	@echo "\033[1;32mInstalling dependencies...\033[0m"
+	pnpm install
+	@$(MAKE) android
 start: ascii
 	@echo "\033[1;32mStarting Expo Development Server...\033[0m"
 	pnpm start
